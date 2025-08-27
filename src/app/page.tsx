@@ -4,92 +4,40 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      <div className={styles.crtEffect}>
+        <main className={styles.main}>
+          {/* ファミコン風のヘッダー */}
+          <header className={styles.header}>
+            <div className={styles.pixelBorder}>
+              <h1 className={styles.title}>ぐっちのDevRoom</h1>
+              <div className={styles.subtitle}>PORTFOLIO</div>
+            </div>
+          </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          {/* メインコンテンツエリア */}
+          <div className={styles.contentArea}>
+            <div className={styles.pixelBox}>
+              <h2 className={styles.sectionTitle}>About This Site</h2>
+              <p className={styles.description}>
+                ここはエンジニアぐっちのポートフォリオサイトなのねん。
+                フルスタックエンジニアとして、モダンなWeb技術とゲームが好きなのねん。
+                これまでに手がけた制作物、身につけたスキルをまとめてるのねん。
+                あなたに、私のことをもっと深く知ってほしいと思って作ったのねん。
+                コーヒーでも飲みながらゆっくりサイト内を散策するのねん。
+              </p>
+            </div>
+          </div>
+        </main>
+
+        {/* レトロなフッター */}
+        <footer className={styles.footer}>
+          <div className={styles.pixelBorder}>
+            <div className={styles.footerText}>
+              © 2025 - POWERED BY ぐっち
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

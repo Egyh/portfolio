@@ -1,167 +1,254 @@
+/* ファミコン風レトロチックポートフォリオのスタイル */
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+  --retro-bg: #0f0f23;
+  --retro-text: #00ff00;
+  --retro-accent: #ff6b35;
+  --retro-border: #4a9eff;
+  --retro-shadow: #0066cc;
+  --retro-highlight: #ffff00;
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  background: var(--retro-bg);
+  color: var(--retro-text);
+  font-family: "Courier New", monospace;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+/* CRT効果 */
+.crtEffect {
+  position: relative;
+  min-height: 100vh;
+}
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
+.crtEffect::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 1000;
+  pointer-events: none;
+  animation: scanlines 0.1s linear infinite;
+}
+
+.crtEffect::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 999;
+  pointer-events: none;
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(4px);
   }
 }
 
+/* メインコンテンツ */
 .main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
+/* ヘッダー */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.pixelBorder {
+  border: 4px solid var(--retro-border);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  box-shadow: 0 0 0 4px var(--retro-shadow),
+    inset 0 0 0 2px var(--retro-highlight);
+  position: relative;
+}
+
+.pixelBorder::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--retro-border),
+    var(--retro-border) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: -1;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--retro-highlight);
+  text-shadow: 2px 2px 0 var(--retro-shadow), 4px 4px 0 var(--retro-accent);
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+  letter-spacing: 4px;
+  font-family: "Courier New", monospace;
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--retro-accent);
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
+/* コンテンツエリア */
+.contentArea {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 40px;
 }
 
-.ctas {
-  display: flex;
-  gap: 16px;
+.pixelBox {
+  border: 3px solid var(--retro-border);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 25px;
+  position: relative;
+  box-shadow: 0 0 0 3px var(--retro-shadow),
+    inset 0 0 0 1px var(--retro-highlight);
 }
 
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+.pixelBox::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--retro-border),
+    var(--retro-border) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: -1;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.sectionTitle {
+  font-size: 2rem;
+  color: var(--retro-highlight);
+  margin: 0 0 20px 0;
+  text-shadow: 2px 2px 0 var(--retro-shadow);
+  border-bottom: 2px solid var(--retro-accent);
+  padding-bottom: 10px;
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
 }
 
+/* フッター */
 .footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
 }
 
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.footer .pixelBorder {
+  padding: 15px;
 }
 
-.footer img {
-  flex-shrink: 0;
+.footerText {
+  font-size: 1rem;
+  color: var(--retro-accent);
+  letter-spacing: 1px;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .subtitle {
+    font-size: 1.2rem;
   }
 
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .sectionTitle {
+    font-size: 1.5rem;
   }
-}
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+  .skillsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .controller {
+    flex-direction: column;
+    gap: 20px;
   }
 
   .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    padding: 15px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+/* アニメーション効果 */
+@keyframes pixelate {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pixelBox:hover {
+  animation: pixelate 0.3s ease;
+}
+
+/* レトロなスクロールバー */
+.page::-webkit-scrollbar {
+  width: 12px;
+}
+
+.page::-webkit-scrollbar-track {
+  background: var(--retro-bg);
+  border: 1px solid var(--retro-border);
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: var(--retro-accent);
+  border: 1px solid var(--retro-highlight);
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-highlight);
 }
