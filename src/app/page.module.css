@@ -234,6 +234,64 @@
   animation: pixelate 0.3s ease;
 }
 
+/* About Me セクション */
+.aboutContent {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.avatarContainer {
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--retro-accent), var(--retro-highlight));
+  border: 3px solid var(--retro-border);
+  box-shadow: 0 0 0 3px var(--retro-shadow),
+    inset 0 0 0 1px var(--retro-highlight);
+  position: relative;
+}
+
+.avatar::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--retro-border),
+    var(--retro-border) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.aboutText {
+  flex: 1;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .aboutContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 /* レトロなスクロールバー */
 .page::-webkit-scrollbar {
   width: 12px;

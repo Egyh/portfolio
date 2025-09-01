@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Introduction } from "./components/Introduction";
+import { About } from "./components/About";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <main className={styles.main}>
           <Header />
           <Introduction />
+          <About />
         </main>
         <Footer />
       </div>
