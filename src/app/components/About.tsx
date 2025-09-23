@@ -11,7 +11,10 @@ export function About() {
           </div>
           <div className={styles.aboutText}>
             <p className={styles.description}>
-              大阪出身のエンジニア。外大で英語や異文化コミュニケーションを学んだのち、メーカーでロジスティックスやSMCに従事。その後ITの技術にひかれ、IT業界へ転職。運用・保守からキャリアをスタートし、AWSクラウドサーバー構築、React/Next.js、Ruby/Railsの開発など、インフラからフロントサイドまで幅広く業務を経験してきました。
+            I'm an engineer originally from Osaka. After studying English and intercultural communication at a university specializing in foreign languages, I worked in logistics and SMC at a manufacturer. 
+            Later, drawn to IT technology, I transitioned into the IT industry. 
+            Starting my career in operations and maintenance, 
+            I've gained broad experience across infrastructure and front-end development, including AWS cloud server setup, React/Next.js, and Ruby/Rails development.
             </p>
           </div>
         </div>

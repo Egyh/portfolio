@@ -1,18 +1,18 @@
 :root {
-  --background: #0f0f23;
-  --foreground: #00ff00;
-  --retro-bg: #0f0f23;
-  --retro-text: #00ff00;
-  --retro-accent: #ff6b35;
-  --retro-border: #4a9eff;
-  --retro-shadow: #0066cc;
-  --retro-highlight: #ffff00;
+  --background: #ffffff;
+  --foreground: #0f2d1c;
+  --portfolio-bg: #ffffff; /* light background */
+  --portfolio-text: #0f2d1c; /* deep green text */
+  --portfolio-accent: #10b981; /* emerald green */
+  --portfolio-border: #10b981; /* emerald border */
+  --portfolio-shadow: #c9f0e3; /* soft emerald tint shadow */
+  --portfolio-highlight: #0f2d1c; /* dark accent for inset */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0f23;
-    --foreground: #00ff00;
+    --background: #0b0b0b;
+    --foreground: #eaffea;
   }
 }
 
@@ -20,19 +20,14 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background: var(--retro-bg);
-  color: var(--retro-text);
+  background: var(--portfolio-bg);
+  color: var(--portfolio-text);
 }
 
 body {
-  color: var(--retro-text);
-  background: var(--retro-bg);
-  font-family: "Courier New", "MS Gothic", monospace;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: none;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
+  color: var(--portfolio-text);
+  background: var(--portfolio-bg);
+  font-family: Arial, Helvetica, sans-serif
 }
 
 * {
@@ -44,47 +39,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-/* レトロなスクロールバー */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--retro-bg);
-  border: 1px solid var(--retro-border);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--retro-accent);
-  border: 1px solid var(--retro-highlight);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-highlight);
-}
-
-/* ファミコン風のフォント設定 */
-@font-face {
-  font-family: "RetroFont";
-  src: local("Courier New"), local("MS Gothic");
-  font-display: swap;
-}
-
-/* レトロな選択スタイル */
-::selection {
-  background: var(--retro-accent);
-  color: var(--retro-bg);
-}
-
-::-moz-selection {
-  background: var(--retro-accent);
-  color: var(--retro-bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

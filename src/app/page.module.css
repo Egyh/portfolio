@@ -1,67 +1,23 @@
 /* ファミコン風レトロチックポートフォリオのスタイル */
 .page {
-  --retro-bg: #0f0f23;
-  --retro-text: #00ff00;
-  --retro-accent: #ff6b35;
-  --retro-border: #4a9eff;
-  --retro-shadow: #0066cc;
-  --retro-highlight: #ffff00;
+  --portfolio-bg: #ffffff;
+  --portfolio-text: #0f2d1c; /* deep green */
+  --portfolio-accent: #10b981; /* emerald */
+  --portfolio-border: #10b981; /* emerald */
+  --portfolio-shadow: #c9f0e3; /* soft emerald */
+  --portfolio-highlight: #0f2d1c; /* dark accent */
 
-  background: var(--retro-bg);
-  color: var(--retro-text);
-  font-family: "Courier New", monospace;
+  background: var(--portfolio-bg);
+  color: var(--portfolio-text);
+  font-family: "Arial", monospace;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* CRT効果 */
-.crtEffect {
-  position: relative;
-  min-height: 100vh;
-}
-
-.crtEffect::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-  background-size: 100% 4px;
-  z-index: 1000;
-  pointer-events: none;
-  animation: scanlines 0.1s linear infinite;
-}
-
-.crtEffect::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
-  z-index: 999;
-  pointer-events: none;
-}
-
-@keyframes scanlines {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(4px);
-  }
-}
 
 /* メインコンテンツ */
 .main {
-  padding: 20px;
+  padding: 32px 20px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -72,116 +28,86 @@
 .header {
   text-align: center;
   margin-bottom: 40px;
-  padding: 20px;
+  padding: 12px 0 4px;
 }
 
 .pixelBorder {
-  border: 4px solid var(--retro-border);
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  box-shadow: 0 0 0 4px var(--retro-shadow),
-    inset 0 0 0 2px var(--retro-highlight);
+  border: none;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
   position: relative;
 }
 
 .pixelBorder::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--retro-border),
-    var(--retro-border) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  z-index: -1;
+  content: none;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--retro-highlight);
-  text-shadow: 2px 2px 0 var(--retro-shadow), 4px 4px 0 var(--retro-accent);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f2d1c;
   margin: 0;
-  letter-spacing: 4px;
-  font-family: "Courier New", monospace;
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
-  font-size: 1.5rem;
-  color: var(--retro-accent);
-  margin-top: 10px;
-  letter-spacing: 2px;
+  font-size: 0.95rem;
+  color: #5f8a76;
+  margin-top: 8px;
+  letter-spacing: 0.6px;
 }
 
 /* コンテンツエリア */
 .contentArea {
   display: grid;
-  gap: 30px;
+  gap: 24px;
   margin-bottom: 40px;
 }
 
 .pixelBox {
-  border: 3px solid var(--retro-border);
-  background: rgba(0, 0, 0, 0.9);
-  padding: 25px;
+  border: none;
+  background: #ffffff;
+  padding: 24px;
   position: relative;
-  box-shadow: 0 0 0 3px var(--retro-shadow),
-    inset 0 0 0 1px var(--retro-highlight);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(16, 185, 129, 0.12);
+  transition: transform 180ms ease, box-shadow 200ms ease;
 }
 
 .pixelBox::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--retro-border),
-    var(--retro-border) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  z-index: -1;
+  content: none;
 }
 
 .sectionTitle {
-  font-size: 2rem;
-  color: var(--retro-highlight);
-  margin: 0 0 20px 0;
-  text-shadow: 2px 2px 0 var(--retro-shadow);
-  border-bottom: 2px solid var(--retro-accent);
-  padding-bottom: 10px;
+  font-size: 1.4rem;
+  color: #0f2d1c;
+  margin: 0 0 12px 0;
+  font-weight: 700;
 }
 
 .description {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.8;
   margin: 0;
-  text-align: justify;
+  color: #374b42;
 }
 
 /* フッター */
 .footer {
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  padding: 24px 0 40px;
+  margin-top: 24px;
 }
 
 .footer .pixelBorder {
-  padding: 15px;
+  padding: 0;
 }
 
 .footerText {
-  font-size: 1rem;
-  color: var(--retro-accent);
-  letter-spacing: 1px;
+  font-size: 0.9rem;
+  color: #7a9b8e;
+  letter-spacing: 0.4px;
 }
 
 /* レスポンシブデザイン */
@@ -231,7 +157,8 @@
 }
 
 .pixelBox:hover {
-  animation: pixelate 0.3s ease;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.22), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* About Me セクション */
@@ -248,30 +175,15 @@
 .avatar {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, var(--retro-accent), var(--retro-highlight));
-  border: 3px solid var(--retro-border);
-  box-shadow: 0 0 0 3px var(--retro-shadow),
-    inset 0 0 0 1px var(--retro-highlight);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.15);
   position: relative;
 }
 
 .avatar::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--retro-border),
-    var(--retro-border) 2px,
-    transparent 2px,
-    transparent 4px
-  );
-  border-radius: 50%;
-  z-index: -1;
+  content: none;
 }
 
 .aboutText {
@@ -285,28 +197,9 @@
     align-items: center;
     text-align: center;
   }
-  
+
   .avatar {
     width: 50px;
     height: 50px;
   }
-}
-
-/* レトロなスクロールバー */
-.page::-webkit-scrollbar {
-  width: 12px;
-}
-
-.page::-webkit-scrollbar-track {
-  background: var(--retro-bg);
-  border: 1px solid var(--retro-border);
-}
-
-.page::-webkit-scrollbar-thumb {
-  background: var(--retro-accent);
-  border: 1px solid var(--retro-highlight);
-}
-
-.page::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-highlight);
 }
