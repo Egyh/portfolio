@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Introduction } from "./components/Introduction";
 import { About } from "./components/About";
+import { SkillGraph } from "./components/SkillGraph";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
           <Header />
           <Introduction />
           <About />
+          <SkillGraph />
         </main>
         <Footer />
       </div>
