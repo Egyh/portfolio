@@ -1,0 +1,159 @@
+.hero {
+  padding: 120px 24px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.heroContent {
+  max-width: 720px;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  margin-bottom: 24px;
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-success);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.badgeText {
+  font-weight: 500;
+}
+
+.heroTitle {
+  margin: 0 0 20px 0;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.heroDescription {
+  margin: 0 0 32px 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.primaryButton:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.secondaryButton:hover {
+  background: var(--color-border-subtle);
+  text-decoration: none;
+}
+
+.heroStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 32px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNumber {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 16px 64px;
+  }
+  
+  .heroDescription {
+    font-size: 16px;
+  }
+  
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .heroStats {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

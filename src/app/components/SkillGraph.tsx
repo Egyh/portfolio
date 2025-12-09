@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './SkillGraph.module.css';
 
 interface SkillItem {
@@ -18,43 +18,128 @@ interface SkillGraphProps {
   skillCategories?: SkillCategory[];
 }
 
-const defaultSkillCategories: SkillCategory[] = [
-  {
-    category: 'Frontend',
-    color: '#10b981',
-    skills: [
-      { name: 'HTML', level: 3 },
-      { name: 'CSS', level: 3 },
-      { name: 'JavaScript', level: 3 },
-      { name: 'TypeScript', level: 3 },
-      { name: 'React', level: 3 }
-    ]
-  },
-  {
-    category: 'Backend',
-    color: '#10b981',
-    skills: [
-      { name: 'Rails', level: 3 },
-      { name: 'Database', level: 3 },
-      { name: 'API', level: 3 },
-      { name: 'Architecture', level: 3 },
-      { name: 'Test', level: 3 }
-    ]
-  },
-  {
-    category: 'Infrastructure',
-    color: '#10b981',
-    skills: [
-      { name: 'Cloud Platforms', level: 3 },
-      { name: 'Containers & Orchestration', level: 3 },
-      { name: 'CI/CD Pipelines', level: 3 },
-      { name: 'Monitoring & Logging', level: 3 },
-      { name: 'Security & Networking', level: 3 }
-    ]
-  }
-];
+const getSkillCategories = (theme: 'light' | 'dark'): SkillCategory[] => {
+  const colors = theme === 'light' 
+    ? {
+        frontend: '#9b59b6', // パープル
+        backend: '#3498db', // ブルー
+        infrastructure: '#2ecc71' // グリーン
+      }
+    : {
+        frontend: '#bb86fc', // 明るいパープル
+        backend: '#03dac6', // 明るいシアン
+        infrastructure: '#00e676' // 明るいグリーン
+      };
 
-export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaultSkillCategories }) => {
+  return [
+    {
+      category: 'Frontend',
+      color: colors.frontend,
+      skills: [
+        { name: 'HTML', level: 3 },
+        { name: 'CSS', level: 3 },
+        { name: 'JavaScript', level: 3 },
+        { name: 'TypeScript', level: 3 },
+        { name: 'React', level: 3 }
+      ]
+    },
+    {
+      category: 'Backend',
+      color: colors.backend,
+      skills: [
+        { name: 'Rails', level: 3 },
+        { name: 'Database', level: 3 },
+        { name: 'API', level: 3 },
+        { name: 'Architecture', level: 3 },
+        { name: 'Test', level: 3 }
+      ]
+    },
+    {
+      category: 'Infrastructure',
+      color: colors.infrastructure,
+      skills: [
+        { name: 'Cloud Platforms', level: 3 },
+        { name: 'Containers & Orchestration', level: 3 },
+        { name: 'CI/CD Pipelines', level: 3 },
+        { name: 'Monitoring & Logging', level: 3 },
+        { name: 'Security & Networking', level: 3 }
+      ]
+    }
+  ];
+};
+
+export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories: propCategories }) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState(false);
+  const [bgColor, setBgColor] = useState('#ffffff');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    setMounted(true);
+    
+    try {
+      if (document.documentElement) {
+        const currentTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
+        setTheme(currentTheme);
+      }
+    } catch (error) {
+      console.error('Error getting theme:', error);
+      setTheme('light');
+    }
+    
+    // CSS変数から背景色を取得
+    const updateBgColor = () => {
+      if (typeof window === 'undefined' || !document.documentElement) return;
+      
+      try {
+        const computedStyle = getComputedStyle(document.documentElement);
+        const bg = computedStyle.getPropertyValue('--color-bg') || computedStyle.getPropertyValue('--gb-bg');
+        setBgColor(bg.trim() || '#ffffff');
+      } catch (error) {
+        console.error('Error updating background color:', error);
+      }
+    };
+    
+    updateBgColor();
+    
+    let observer: MutationObserver | null = null;
+    
+    try {
+      if (document.documentElement) {
+        observer = new MutationObserver(() => {
+          try {
+            if (document.documentElement) {
+              const newTheme = document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
+              setTheme(newTheme);
+              updateBgColor();
+            }
+          } catch (error) {
+            console.error('Error in MutationObserver:', error);
+          }
+        });
+        
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-theme']
+        });
+      }
+    } catch (error) {
+      console.error('Error setting up MutationObserver:', error);
+    }
+    
+    return () => {
+      if (observer) {
+        try {
+          observer.disconnect();
+        } catch (error) {
+          console.error('Error disconnecting observer:', error);
+        }
+      }
+    };
+  }, []);
+
+  const skillCategories = propCategories || (mounted ? getSkillCategories(theme) : getSkillCategories('light'));
   // レーダーチャートの中心点と半径
   const centerX = 100;
   const centerY = 100;
@@ -82,6 +167,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
 
   // グリッド線を生成（5段階の同心円）
   const createGridCircles = () => {
+    const gridColor = theme === 'light' ? '#cccccc' : '#333333';
     return Array.from({ length: maxLevel }, (_, i) => {
       const r = ((i + 1) / maxLevel) * radius;
       return (
@@ -91,9 +177,10 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
           cy={centerY}
           r={r}
           fill="none"
-          stroke="#e5e7eb"
-          strokeWidth="1"
+          stroke={gridColor}
+          strokeWidth="1.5"
           strokeDasharray={i === maxLevel - 1 ? "none" : "3,3"}
+          opacity={0.6}
         />
       );
     });
@@ -101,6 +188,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
 
   // 軸線を生成
   const createAxisLines = (skills: SkillItem[]) => {
+    const axisColor = theme === 'light' ? '#cccccc' : '#333333';
     const angleStep = (2 * Math.PI) / skills.length;
     return skills.map((_, index) => {
       const angle = index * angleStep - Math.PI / 2;
@@ -113,8 +201,9 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
           y1={centerY}
           x2={x}
           y2={y}
-          stroke="#e5e7eb"
-          strokeWidth="1"
+          stroke={axisColor}
+          strokeWidth="1.5"
+          opacity={0.6}
         />
       );
     });
@@ -123,6 +212,8 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
   // スキルラベルを生成
   const createSkillLabels = (skills: SkillItem[], color: string) => {
     const angleStep = (2 * Math.PI) / skills.length;
+    // ラベルはテーマに応じた色で統一
+    const labelColor = theme === 'light' ? '#000000' : '#ffffff';
     return skills.map((skill, index) => {
       const angle = index * angleStep - Math.PI / 2;
       const labelDistance = radius + 15;
@@ -137,7 +228,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
           textAnchor="middle"
           dominantBaseline="middle"
           className={styles.skillLabel}
-          fill={color}
+          fill={labelColor}
         >
           {skill.name}
         </text>
@@ -167,6 +258,14 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
   return (
     <div className={styles.skillGraphContainer}>
       <h2 className={styles.title}>Skills Radar Charts</h2>
+      <div className={styles.description}>
+        <p>
+          修練のすえ身につけたスキルをグラフィカルにまとめました。広く浅くではありますがフロントからバックエンドまで幅広くスキルアップに取り組んできました。オールラウンドに対応できる点が強みですが、全体的に理解が浅く、専門性の低さを認識しています。今後はバックエンド系の開発（クラウド含む）の業務に携わる比率を増やし、少しずつ専門性を高めていきたいと考えています。
+        </p>
+        <p className={styles.note}>
+          ＊業務で実際に使用した技術のみ掲載しております。
+        </p>
+      </div>
       <div className={styles.radarChartsWrapper}>
         {skillCategories.map((category, categoryIndex) => (
           <div key={category.category} className={styles.radarChartContainer}>
@@ -178,7 +277,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
               viewBox="0 0 200 200"
             >
               {/* 背景 */}
-              <rect width="200" height="200" fill="#f8fafc" rx="8" />
+              <rect width="200" height="200" fill={bgColor} />
               
               {/* グリッド円 */}
               {createGridCircles()}
@@ -189,9 +288,9 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories = defaul
               {/* レーダーチャートエリア */}
               <path
                 d={createRadarPath(category.skills)}
-                fill={`${category.color}20`}
+                fill={`${category.color}80`}
                 stroke={category.color}
-                strokeWidth="2"
+                strokeWidth="2.5"
                 className={styles.radarPath}
               />
               
