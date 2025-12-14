@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import styles from './SkillGraph.module.css';
+import styles from '../styles/SkillGraph.module.css';
 
 interface SkillItem {
   name: string;

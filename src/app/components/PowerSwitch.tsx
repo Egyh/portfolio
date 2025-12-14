@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTheme } from './ThemeProvider';
-import styles from './PowerSwitch.module.css';
+import styles from '../styles/PowerSwitch.module.css';
 
 export function PowerSwitch() {
   const { theme, toggleTheme } = useTheme();

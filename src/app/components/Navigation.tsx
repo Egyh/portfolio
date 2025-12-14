@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import styles from './Navigation.module.css';
+import styles from '../styles/Navigation.module.css';
 
 const navItems = [
   { id: 'hero', label: 'HOME' },

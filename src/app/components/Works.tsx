@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Works.module.css';
+import styles from '../styles/Works.module.css';
 
 interface Project {
   id: number;

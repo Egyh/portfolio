@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeToggle } from './ThemeToggle';
-import styles from './Header.module.css';
+import styles from '../styles/Header.module.css';
 
 const navItems = [
   { id: 'about', label: 'About' },

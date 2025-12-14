@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTheme } from './ThemeProvider';
-import styles from './ThemeToggle.module.css';
+import styles from '../styles/ThemeToggle.module.css';
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();

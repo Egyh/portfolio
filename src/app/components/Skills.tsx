@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Skills.module.css';
+import styles from '../styles/Skills.module.css';
 
 interface Skill {
   name: string;
