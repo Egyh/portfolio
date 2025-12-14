@@ -1,0 +1,194 @@
+.zennArticles {
+  padding: 80px 24px;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.sectionDescription {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 48px 24px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+.error {
+  color: var(--color-danger, #dc3545);
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.articleCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.articleCard:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.articleEmoji {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.articleContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.articleTitle {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.articleMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.articleDate {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.articleStats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.publication {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+}
+
+.articleArrow {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.articleCard:hover .articleArrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.viewMore {
+  text-align: center;
+  padding-top: 16px;
+}
+
+.viewMoreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.viewMoreLink:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-surface);
+}
+
+@media (max-width: 768px) {
+  .zennArticles {
+    padding: 64px 16px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .sectionDescription {
+    font-size: 16px;
+  }
+
+  .articlesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .articleCard {
+    padding: 16px;
+  }
+
+  .articleEmoji {
+    font-size: 28px;
+  }
+
+  .articleTitle {
+    font-size: 15px;
+  }
+
+  .articleArrow {
+    display: none;
+  }
+}
