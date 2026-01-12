@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import { useLanguage } from "./LanguageProvider";
@@ -11,19 +11,19 @@ export function About() {
     <section className={styles.about} id="about">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>{t('about.title')}</h2>
-          <p className={styles.sectionDescription}>{t('about.subtitle')}</p>
+          <h2 className={styles.sectionTitle}>{t("about.title")}</h2>
+          <p className={styles.sectionDescription}>{t("about.subtitle")}</p>
         </div>
 
         <div className={styles.content}>
           <div className={styles.contentMain}>
             <div className={styles.textBlock}>
-              <p>{t('about.intro1')}</p>
-              <p>{t('about.intro2')}</p>
+              <p>{t("about.intro1")}</p>
+              <p>{t("about.intro2")}</p>
             </div>
 
             <div className={styles.skillsList}>
-              <h3 className={styles.skillsTitle}>{t('about.technologies')}</h3>
+              <h3 className={styles.skillsTitle}>{t("about.technologies")}</h3>
               <div className={styles.skillsGrid}>
                 {[
                   "TypeScript",
@@ -50,31 +50,33 @@ export function About() {
           <div className={styles.contentSide}>
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>{t('about.location')}</span>
+                <span className={styles.cardTitle}>{t("about.location")}</span>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardText}>{t('about.locationValue')}</span>
+                <span className={styles.cardText}>
+                  {t("about.locationValue")}
+                </span>
               </div>
             </div>
 
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>{t('about.education')}</span>
+                <span className={styles.cardTitle}>{t("about.education")}</span>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardText}>{t('about.educationValue')}</span>
+                <span className={styles.cardText}>
+                  {t("about.educationValue")}
+                </span>
               </div>
             </div>
 
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>{t('about.interests')}</span>
+                <span className={styles.cardTitle}>{t("about.interests")}</span>
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardTags}>
-                  <span className={styles.tag}>{t('about.interest.web')}</span>
-                  <span className={styles.tag}>{t('about.interest.infra')}</span>
-                  <span className={styles.tag}>{t('about.interest.oss')}</span>
+                  <span className={styles.tag}>{t("about.interest.web")}</span>
                 </div>
               </div>
             </div>
