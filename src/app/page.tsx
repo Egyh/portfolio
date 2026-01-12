@@ -1,13 +1,13 @@
-import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Works } from './components/Works';
-import { ZennArticles } from './components/ZennArticles';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
-import styles from './page.module.css';
+import React from "react";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
+import { About } from "./components/About";
+import { Skills } from "./components/Skills";
+import { Works } from "./components/Works";
+import { ZennArticles } from "./components/ZennArticles";
+import { Contact } from "./components/Contact";
+import { Footer } from "./components/Footer";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Works />
+        {/* <Works /> */}
         <ZennArticles />
         <Contact />
       </main>

@@ -1,7 +1,11 @@
+'use client';
+
 import React from 'react';
+import { useLanguage } from './LanguageProvider';
 import styles from '../styles/Footer.module.css';
 
 export function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -9,10 +13,10 @@ export function Footer() {
       <div className={styles.footerContent}>
         <div className={styles.footerLeft}>
           <p className={styles.footerText}>
-            © {currentYear} Gucchi. All rights reserved.
+            {t('footer.rights').replace('{year}', String(currentYear))}
           </p>
         </div>
-        
+
         <div className={styles.footerRight}>
           <a
             href="https://github.com"

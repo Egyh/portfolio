@@ -1,44 +1,23 @@
+'use client';
+
 import React from "react";
+import { useLanguage } from "./LanguageProvider";
 import styles from "../styles/Hero.module.css";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>
-          Full-Stack Engineer
-          <br />
-          Building Modern Web Experiences
-        </h1>
-
+        <h1 className={styles.heroTitle}>{t('hero.title')}</h1>
         <p className={styles.heroDescription}>
-          I create scalable web applications with a focus on clean code, user
-          experience, and modern technologies. Passionate about turning ideas
-          into reality through elegant solutions.
+          {t('hero.description')}
         </p>
-
         <div className={styles.heroActions}>
-          <a href="#works" className={styles.primaryButton}>
-            View My Work
-          </a>
           <a href="#contact" className={styles.secondaryButton}>
-            Get In Touch
+            {t('hero.contact')}
           </a>
-        </div>
-
-        <div className={styles.heroStats}>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>3+</span>
-            <span className={styles.statLabel}>Years Experience</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>10+</span>
-            <span className={styles.statLabel}>Projects</span>
-          </div>
-          <div className={styles.stat}>
-            <span className={styles.statNumber}>Full-Stack</span>
-            <span className={styles.statLabel}>Specialization</span>
-          </div>
         </div>
       </div>
     </section>

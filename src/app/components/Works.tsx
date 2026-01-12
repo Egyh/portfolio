@@ -1,10 +1,13 @@
+'use client';
+
 import React from 'react';
+import { useLanguage } from './LanguageProvider';
 import styles from '../styles/Works.module.css';
 
 interface Project {
   id: number;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   tech: string[];
   category: 'web' | 'api' | 'infra';
   link?: string;
@@ -13,28 +16,30 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Portfolio Website',
-    description: 'Modern portfolio website built with Next.js and TypeScript. Features GitHub-inspired design with responsive layout and smooth animations.',
+    titleKey: 'works.project1.title',
+    descriptionKey: 'works.project1.description',
     tech: ['Next.js', 'TypeScript', 'CSS Modules'],
     category: 'web',
   },
   {
     id: 2,
-    title: 'API Gateway Service',
-    description: 'Microservices API gateway with authentication, rate limiting, and comprehensive logging. Built for high-traffic applications.',
+    titleKey: 'works.project2.title',
+    descriptionKey: 'works.project2.description',
     tech: ['Rails', 'PostgreSQL', 'Redis'],
     category: 'api',
   },
   {
     id: 3,
-    title: 'Cloud Infrastructure Setup',
-    description: 'Scalable infrastructure on AWS with automated CI/CD pipelines. Includes container orchestration and monitoring solutions.',
+    titleKey: 'works.project3.title',
+    descriptionKey: 'works.project3.description',
     tech: ['AWS', 'Docker', 'Terraform'],
     category: 'infra',
   },
 ];
 
 export function Works() {
+  const { t } = useLanguage();
+
   const getCategoryBadge = (category: string) => {
     const badges = {
       web: 'Web',
@@ -48,12 +53,12 @@ export function Works() {
     <section className={styles.works} id="works">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Works</h2>
+          <h2 className={styles.sectionTitle}>{t('works.title')}</h2>
           <p className={styles.sectionDescription}>
-            Selected projects showcasing my technical expertise
+            {t('works.subtitle')}
           </p>
         </div>
-        
+
         <div className={styles.projectsGrid}>
           {projects.map((project) => (
             <div key={project.id} className={styles.projectCard}>
@@ -62,10 +67,10 @@ export function Works() {
                   <h3 className={styles.projectTitle}>
                     {project.link ? (
                       <a href={project.link} className={styles.projectLink}>
-                        {project.title}
+                        {t(project.titleKey)}
                       </a>
                     ) : (
-                      project.title
+                      t(project.titleKey)
                     )}
                   </h3>
                   <span className={styles.projectBadge}>
@@ -73,11 +78,11 @@ export function Works() {
                   </span>
                 </div>
               </div>
-              
+
               <p className={styles.projectDescription}>
-                {project.description}
+                {t(project.descriptionKey)}
               </p>
-              
+
               <div className={styles.projectFooter}>
                 <div className={styles.projectTech}>
                   {project.tech.map((tech) => (
@@ -93,7 +98,7 @@ export function Works() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    View Project →
+                    {t('works.viewProject')} →
                   </a>
                 )}
               </div>

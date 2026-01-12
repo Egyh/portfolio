@@ -2,18 +2,21 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeToggle } from './ThemeToggle';
+import { LanguageToggle } from './LanguageToggle';
+import { useLanguage } from './LanguageProvider';
 import styles from '../styles/Header.module.css';
 
 const navItems = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'works', label: 'Works' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'about', labelKey: 'nav.about' },
+  { id: 'skills', labelKey: 'nav.skills' },
+  { id: 'works', labelKey: 'nav.works' },
+  { id: 'contact', labelKey: 'nav.contact' },
 ];
 
 export function Header() {
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const { t } = useLanguage();
 
   const handleScroll = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -82,13 +85,14 @@ export function Header() {
               className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
               onClick={(e) => handleClick(e, item.id)}
             >
-              {item.label}
+              {t(item.labelKey)}
             </a>
           ))}
         </nav>
         
         <div className={styles.headerActions}>
           <ThemeToggle />
+          <LanguageToggle />
         </div>
       </div>
     </header>

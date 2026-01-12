@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useLanguage } from "./LanguageProvider";
 import styles from "../styles/Skills.module.css";
 
 interface Skill {
@@ -25,20 +26,21 @@ const skills: Skill[] = [
 ];
 
 export function Skills() {
+  const { t } = useLanguage();
   const categories = ["frontend", "backend", "infrastructure"] as const;
   const categoryLabels = {
-    frontend: "Frontend",
-    backend: "Backend",
-    infrastructure: "Infrastructure",
+    frontend: t('skills.frontend'),
+    backend: t('skills.backend'),
+    infrastructure: t('skills.infrastructure'),
   };
 
   return (
     <section className={styles.skills} id="skills">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Skills</h2>
+          <h2 className={styles.sectionTitle}>{t('skills.title')}</h2>
           <p className={styles.sectionDescription}>
-            Technologies and tools I use to build modern applications
+            {t('skills.subtitle')}
           </p>
         </div>
 

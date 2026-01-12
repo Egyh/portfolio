@@ -1,38 +1,43 @@
-import React from 'react';
-import styles from '../styles/About.module.css';
+'use client';
+
+import React from "react";
+import { useLanguage } from "./LanguageProvider";
+import styles from "../styles/About.module.css";
 
 export function About() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.about} id="about">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>About</h2>
-          <p className={styles.sectionDescription}>
-            Engineer passionate about building elegant solutions
-          </p>
+          <h2 className={styles.sectionTitle}>{t('about.title')}</h2>
+          <p className={styles.sectionDescription}>{t('about.subtitle')}</p>
         </div>
-        
+
         <div className={styles.content}>
           <div className={styles.contentMain}>
             <div className={styles.textBlock}>
-              <p>
-                大阪出身のエンジニア。外国語大学で英語と異文化コミュニケーションを学び、
-                製造業での物流・SMC業務を経てIT業界へ転身しました。
-              </p>
-              <p>
-                インフラ運用から始まり、AWSクラウドサーバー構築、React/Next.js、Ruby/Rails開発まで、
-                幅広い経験を積んでいます。技術とユーザー体験のバランスを重視し、
-                クリーンなコードとスケーラブルなアーキテクチャを心がけています。
-              </p>
+              <p>{t('about.intro1')}</p>
+              <p>{t('about.intro2')}</p>
             </div>
-            
+
             <div className={styles.skillsList}>
-              <h3 className={styles.skillsTitle}>Technologies I work with</h3>
+              <h3 className={styles.skillsTitle}>{t('about.technologies')}</h3>
               <div className={styles.skillsGrid}>
                 {[
-                  'TypeScript', 'React', 'Next.js', 'Node.js',
-                  'Ruby', 'Rails', 'PostgreSQL', 'AWS',
-                  'Docker', 'Git', 'Linux', 'CI/CD'
+                  "TypeScript",
+                  "React",
+                  "Next.js",
+                  "Node.js",
+                  "Ruby",
+                  "Rails",
+                  "PostgreSQL",
+                  "AWS",
+                  "Docker",
+                  "Git",
+                  "Linux",
+                  "CI/CD",
                 ].map((skill) => (
                   <div key={skill} className={styles.skillItem}>
                     {skill}
@@ -41,35 +46,35 @@ export function About() {
               </div>
             </div>
           </div>
-          
+
           <div className={styles.contentSide}>
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>Location</span>
+                <span className={styles.cardTitle}>{t('about.location')}</span>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardText}>Osaka, Japan</span>
+                <span className={styles.cardText}>{t('about.locationValue')}</span>
               </div>
             </div>
-            
+
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>Education</span>
+                <span className={styles.cardTitle}>{t('about.education')}</span>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardText}>Foreign Language Studies</span>
+                <span className={styles.cardText}>{t('about.educationValue')}</span>
               </div>
             </div>
-            
+
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>Interests</span>
+                <span className={styles.cardTitle}>{t('about.interests')}</span>
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardTags}>
-                  <span className={styles.tag}>Web Development</span>
-                  <span className={styles.tag}>Infrastructure</span>
-                  <span className={styles.tag}>Open Source</span>
+                  <span className={styles.tag}>{t('about.interest.web')}</span>
+                  <span className={styles.tag}>{t('about.interest.infra')}</span>
+                  <span className={styles.tag}>{t('about.interest.oss')}</span>
                 </div>
               </div>
             </div>
