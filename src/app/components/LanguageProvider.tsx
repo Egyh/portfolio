@@ -24,10 +24,10 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "お問い合わせ",
     "hero.title": "ぐっちのDevRoom",
     "hero.description":
-      "ここはエンジニアGucchiのポートフォリオサイトなのねん。これまでに手がけた制作物、身につけたスキルをまとめているのねん。コーヒーでも飲みながらサイト内を散策するのねん。",
+      "ここはエンジニアGucchiのポートフォリオサイトなのねん。自己紹介や、身につけたスキルをまとめているのねん。コーヒーでも飲みながらサイト内を散策するのねん。",
     "hero.contact": "連絡先",
     "about.title": "自己紹介",
-    "about.subtitle": "自己紹介するのねん",
+    "about.subtitle": "色々知ってほしいのねん",
     "about.intro1":
       "大阪出身なのねん。温泉やキャンプが好きなのねん。ゆず胡椒と和菓子にハマってるのねん。",
     "about.intro2":
@@ -62,7 +62,7 @@ const translations: Record<Language, Record<string, string>> = {
       "このサイトを通して、私のことを少しでも知っていただけたのなら嬉しいのねん。もしこのサイトや私について何かコメントがありましたら、連絡よろしくなのねん。",
     "contact.email": "メール",
     "contact.responseTime": "返信時間",
-    "contact.responseTimeText": "通常24時間以内に返信します",
+    "contact.responseTimeText": "通常24時間以内に返信を心がけているのねん",
     "contact.name": "お名前",
     "contact.message": "メッセージ",
     "contact.send": "送信する",

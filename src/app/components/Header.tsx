@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { ThemeToggle } from './ThemeToggle';
-import { LanguageToggle } from './LanguageToggle';
-import { useLanguage } from './LanguageProvider';
-import styles from '../styles/Header.module.css';
+import React, { useState, useEffect, useCallback } from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLanguage } from "./LanguageProvider";
+import styles from "../styles/Header.module.css";
 
 const navItems = [
-  { id: 'about', labelKey: 'nav.about' },
-  { id: 'skills', labelKey: 'nav.skills' },
-  { id: 'works', labelKey: 'nav.works' },
-  { id: 'contact', labelKey: 'nav.contact' },
+  { id: "about", labelKey: "nav.about" },
+  { id: "skills", labelKey: "nav.skills" },
+  // { id: 'works', labelKey: 'nav.works' },
+  { id: "contact", labelKey: "nav.contact" },
 ];
 
 export function Header() {
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const { t } = useLanguage();
 
   const handleScroll = useCallback(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     setScrolled(window.scrollY > 0);
-    
-    const sections = navItems.map(item => 
-      document.getElementById(item.id)
-    ).filter(Boolean) as HTMLElement[];
+
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean) as HTMLElement[];
 
     if (sections.length === 0) return;
 
@@ -40,35 +40,38 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', handleScroll);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
       }
     };
   }, [handleScroll]);
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    
-    if (typeof window === 'undefined') return;
-    
-    try {
-      const element = document.getElementById(id);
-      if (element && element.scrollIntoView) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+      e.preventDefault();
+
+      if (typeof window === "undefined") return;
+
+      try {
+        const element = document.getElementById(id);
+        if (element && element.scrollIntoView) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } catch (error) {
+        console.error("Error scrolling to element:", error);
       }
-    } catch (error) {
-      console.error('Error scrolling to element:', error);
-    }
-  }, []);
+    },
+    []
+  );
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.headerContent}>
         <div className={styles.logo}>
           <a href="/" className={styles.logoLink}>
@@ -76,20 +79,22 @@ export function Header() {
             <span className={styles.logoDot}>.</span>
           </a>
         </div>
-        
+
         <nav className={styles.nav}>
           {navItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
+              className={`${styles.navLink} ${
+                activeSection === item.id ? styles.active : ""
+              }`}
               onClick={(e) => handleClick(e, item.id)}
             >
               {t(item.labelKey)}
             </a>
           ))}
         </nav>
-        
+
         <div className={styles.headerActions}>
           <ThemeToggle />
           <LanguageToggle />
