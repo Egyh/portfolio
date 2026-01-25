@@ -2,9 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { Article, ZennArticlesResponse } from "@/types/zenn";
+import { useLanguage } from "./LanguageProvider";
 import styles from "../styles/ZennArticles.module.css";
 
 export function ZennArticles() {
+  const { t } = useLanguage();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -45,12 +47,12 @@ export function ZennArticles() {
       <section className={styles.zennArticles} id="articles">
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Zenn Articles</h2>
+            <h2 className={styles.sectionTitle}>{t("zenn.title")}</h2>
             <p className={styles.sectionDescription}>
-              Latest technical articles and insights
+              {t("zenn.subtitle")}
             </p>
           </div>
-          <div className={styles.loading}>Loading articles...</div>
+          <div className={styles.loading}>{t("zenn.loading")}</div>
         </div>
       </section>
     );
@@ -61,13 +63,13 @@ export function ZennArticles() {
       <section className={styles.zennArticles} id="articles">
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Zenn Articles</h2>
+            <h2 className={styles.sectionTitle}>{t("zenn.title")}</h2>
             <p className={styles.sectionDescription}>
-              Latest technical articles and insights
+              {t("zenn.subtitle")}
             </p>
           </div>
           <div className={styles.error}>
-            Failed to load articles. Please try again later.
+            {t("zenn.error")}
           </div>
         </div>
       </section>
@@ -78,9 +80,9 @@ export function ZennArticles() {
     <section className={styles.zennArticles} id="articles">
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Zenn Articles</h2>
+          <h2 className={styles.sectionTitle}>{t("zenn.title")}</h2>
           <p className={styles.sectionDescription}>
-            Latest technical articles and insights
+            {t("zenn.subtitle")}
           </p>
         </div>
 

@@ -67,6 +67,10 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.message": "メッセージ",
     "contact.send": "送信する",
     "footer.rights": "© {year} Gucchi. All rights reserved.",
+    "zenn.title": "Zenn記事",
+    "zenn.subtitle": "技術記事と知見の共有",
+    "zenn.loading": "記事を読み込み中...",
+    "zenn.error": "記事の読み込みに失敗しました。後でもう一度お試しください。",
   },
   en: {
     "nav.about": "About",
@@ -119,6 +123,10 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.message": "Message",
     "contact.send": "Send Message",
     "footer.rights": "© {year} Gucchi. All rights reserved.",
+    "zenn.title": "Zenn Articles",
+    "zenn.subtitle": "Latest technical articles and insights",
+    "zenn.loading": "Loading articles...",
+    "zenn.error": "Failed to load articles. Please try again later.",
   },
 };
 
