@@ -61,12 +61,12 @@ export function About() {
 
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <span className={styles.cardTitle}>{t("about.education")}</span>
+                <span className={styles.cardTitle}>
+                  {t("about.thisYearGoal")}
+                </span>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardText}>
-                  {t("about.educationValue")}
-                </span>
+                <span className={styles.cardText}>{t("about.goalValue")}</span>
               </div>
             </div>
 
