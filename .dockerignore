@@ -1,0 +1,29 @@
+# dependencies
+node_modules
+
+# next build
+.next
+
+# git
+.git
+.gitignore
+
+# logs
+*.log
+logs
+
+# env files
+.env*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode
+.idea
+
+# tests
+coverage
+__tests__

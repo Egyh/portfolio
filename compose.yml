@@ -3,7 +3,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: portfolio-app
+
     ports:
       - "3020:3000"
+
+    # ソースコードだけマウント
     volumes:
       - .:/app
+      - /app/node_modules
+      - /root/.cache/ms-playwright
+
+    environment:
+      - NODE_ENV=development
+
+    tty: true
+    stdin_open: true
+
+    command: yarn dev
