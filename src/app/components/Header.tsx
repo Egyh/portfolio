@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
@@ -74,10 +75,10 @@ export function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.headerContent}>
         <div className={styles.logo}>
-          <a href="/" className={styles.logoLink}>
+          <Link href="/" className={styles.logoLink}>
             <span className={styles.logoText}>Gucchi</span>
             <span className={styles.logoDot}>.</span>
-          </a>
+          </Link>
         </div>
 
         <nav className={styles.nav}>

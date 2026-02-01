@@ -1,4 +1,4 @@
-interface ZennArticle {
+export interface ZennArticle {
   id: number;
   title: string;
   slug: string;

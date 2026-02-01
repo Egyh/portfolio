@@ -210,7 +210,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories: propCat
   };
 
   // スキルラベルを生成
-  const createSkillLabels = (skills: SkillItem[], color: string) => {
+  const createSkillLabels = (skills: SkillItem[]) => {
     const angleStep = (2 * Math.PI) / skills.length;
     // ラベルはテーマに応じた色で統一
     const labelColor = theme === 'light' ? '#000000' : '#ffffff';
@@ -267,7 +267,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories: propCat
         </p>
       </div>
       <div className={styles.radarChartsWrapper}>
-        {skillCategories.map((category, categoryIndex) => (
+        {skillCategories.map((category) => (
           <div key={category.category} className={styles.radarChartContainer}>
             <h3 className={styles.categoryTitle}>{category.category}</h3>
             <svg
@@ -298,7 +298,7 @@ export const SkillGraph: React.FC<SkillGraphProps> = ({ skillCategories: propCat
               {createDataPoints(category.skills, category.color)}
               
               {/* スキルラベル */}
-              {createSkillLabels(category.skills, category.color)}
+              {createSkillLabels(category.skills)}
             </svg>
           </div>
         ))}
