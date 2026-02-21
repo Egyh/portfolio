@@ -6,17 +6,29 @@ import styles from "../styles/Hero.module.css";
 
 export function Hero() {
   const { t } = useLanguage();
+  const title = t("hero.title");
 
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>{t("hero.title")}</h1>
+        <div className={styles.circleContainer}>
+          <div className={styles.rotatingText}>
+            <svg viewBox="0 0 200 200" className={styles.circleSvg}>
+              <defs>
+                <path
+                  id="circlePath"
+                  d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
+                />
+              </defs>
+              <text className={styles.heroTitle}>
+                <textPath href="#circlePath" startOffset="0%">
+                  {title} ・ {title} ・
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </div>
         <p className={styles.heroDescription}>{t("hero.description")}</p>
-        {/* <div className={styles.heroActions}>
-          <a href="#contact" className={styles.secondaryButton}>
-            {t('hero.contact')}
-          </a>
-        </div> */}
       </div>
     </section>
   );

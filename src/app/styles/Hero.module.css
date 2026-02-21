@@ -6,6 +6,10 @@
 
 .heroContent {
   max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @keyframes pulse {
@@ -18,17 +22,42 @@
   }
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.rotatingText {
+  width: 250px;
+  height: 250px;
+  animation: rotate 15s linear infinite;
+}
+
+.circleSvg {
+  width: 100%;
+  height: 100%;
+}
+
 .badgeText {
   font-weight: 500;
 }
 
 .heroTitle {
-  margin: 0 0 20px 0;
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: 21px;
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  letter-spacing: 0.05em;
+  fill: var(--color-text);
 }
 
 .heroDescription {
@@ -58,7 +87,9 @@
   border: 1px solid var(--color-accent);
   border-radius: 6px;
   text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .primaryButton:hover {
@@ -78,7 +109,9 @@
   border: 1px solid var(--color-border);
   border-radius: 6px;
   text-decoration: none;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .secondaryButton:hover {
@@ -115,6 +148,15 @@
 @media (max-width: 768px) {
   .hero {
     padding: 100px 16px 64px;
+  }
+
+  .rotatingText {
+    width: 200px;
+    height: 200px;
+  }
+
+  .heroTitle {
+    font-size: 21px;
   }
 
   .heroDescription {

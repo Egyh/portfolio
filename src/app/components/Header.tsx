@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "./LanguageProvider";
@@ -76,8 +77,14 @@ export function Header() {
       <div className={styles.headerContent}>
         <div className={styles.logo}>
           <Link href="/" className={styles.logoLink}>
-            <span className={styles.logoText}>Gucchi</span>
-            <span className={styles.logoDot}>.</span>
+            <Image
+              src="/logo/logo.png"
+              alt="ぐっちのでぶるーむ"
+              width={150}
+              height={40}
+              className={styles.logoImage}
+              priority
+            />
           </Link>
         </div>
 
