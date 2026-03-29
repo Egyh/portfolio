@@ -24,7 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "お問い合わせ",
     "hero.title": "ぐっちのDevRoom",
     "hero.description":
-      "ここはエンジニアGucchiのポートフォリオサイトなのねん。自己紹介や、身につけたスキルをまとめているのねん。コーヒーでも飲みながらサイト内を散策するのねん。",
+      "ここはエンジニアぐっちのポートフォリオサイトなのねん。自己紹介や、身につけたスキルをまとめているのねん。コーヒーでも飲みながらサイト内を散策するのねん。",
     "hero.contact": "連絡先",
     "about.title": "自己紹介",
     "about.subtitle": "色々知ってほしいのねん",
@@ -34,11 +34,11 @@ const translations: Record<Language, Record<string, string>> = {
       "React/Next.js、Ruby/Rails開発を中心にAWSクラウドサーバー構築も少し携わり幅広い経験を積んでいるのねん。新しい技術の発見や発想、好奇心を大切にクリーンなコードとニーズに合わせたアーキテクチャの作成を心がけているのねん。",
     "about.technologies": "使用技術",
     "about.location": "所在地",
-    "about.locationValue": "大阪, 日本",
-    "about.thisYearGoal": "今年の目標",
-    "about.goalValue": "英語の勉強",
+    "about.locationValue": "東京, 日本",
+    "about.thisYearGoal": "座右の名",
+    "about.goalValue": "塞翁が馬",
     "about.interests": "興味分野",
-    "about.interest.web": "自動化すること",
+    "about.interest.web": "CI/CD",
     "skills.title": "スキル",
     "skills.subtitle": "モダンなアプリケーション開発に使用している技術とツール",
     "skills.frontend": "フロントエンド",
@@ -89,11 +89,11 @@ const translations: Record<Language, Record<string, string>> = {
       "I have broad experience mainly in React/Next.js and Ruby/Rails development, with some AWS cloud server infrastructure work. I value curiosity and discovering new technologies, always striving to write clean code and create architectures that meet specific needs.",
     "about.technologies": "Technologies I work with",
     "about.location": "Location",
-    "about.locationValue": "Osaka, Japan",
-    "about.thisYearGoal": "Goal For This Year",
-    "about.goalValue": "Foreign Language Studies",
+    "about.locationValue": "Tokyo, Japan",
+    "about.thisYearGoal": "motto",
+    "about.goalValue": "fortune is unpredictable and changeable",
     "about.interests": "Interests",
-    "about.interest.web": "Automation",
+    "about.interest.web": "CI/CD",
     "skills.title": "Skills",
     "skills.subtitle":
       "Technologies and tools I use to build modern applications",
@@ -131,7 +131,7 @@ const translations: Record<Language, Record<string, string>> = {
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
