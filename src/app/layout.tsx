@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { LanguageProvider } from "./components/LanguageProvider";
+import { ReCaptchaProvider } from "./components/ReCaptchaProvider";
 
 export const metadata: Metadata = {
   title: "ぐっちのDevRoom",
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <LanguageProvider>
-            {children}
+            <ReCaptchaProvider>
+              {children}
+            </ReCaptchaProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

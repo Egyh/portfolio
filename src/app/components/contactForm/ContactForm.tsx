@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useLanguage } from "../LanguageProvider";
 import { FormInput } from "./FormInput";
 import { FormTextarea } from "./FormTextarea";
@@ -17,6 +18,7 @@ interface FormErrors {
 
 export function ContactForm() {
   const { t } = useLanguage();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -53,10 +55,18 @@ export function ContactForm() {
     try {
       await contactSchema.validate(formData, { abortEarly: false });
 
+      if (!executeRecaptcha) {
+        setStatus("error");
+        setStatusMessage("reCAPTCHAの初期化に失敗しました。ページを再読み込みしてください。");
+        return;
+      }
+
+      const recaptchaToken = await executeRecaptcha("contact");
+
       const response = await fetch("/api/v1/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       const data = await response.json();

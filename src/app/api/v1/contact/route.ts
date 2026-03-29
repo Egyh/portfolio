@@ -2,11 +2,50 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { contactSchema } from "@/app/lib/validations/contactSchema";
 
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error("RECAPTCHA_SECRET_KEY is not set");
+    return false;
+  }
+
+  const response = await fetch(
+    "https://www.google.com/recaptcha/api/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${secretKey}&response=${token}`,
+    },
+  );
+
+  const data = await response.json();
+
+  return data.success && data.score >= 0.5;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const { recaptchaToken, ...formData } = body;
 
-    const validatedData = await contactSchema.validate(body, {
+    // reCAPTCHAトークンの検証
+    if (!recaptchaToken) {
+      return NextResponse.json(
+        { message: "reCAPTCHA検証が必要です" },
+        { status: 400 },
+      );
+    }
+
+    const isHuman = await verifyRecaptcha(recaptchaToken);
+    if (!isHuman) {
+      return NextResponse.json(
+        { message: "reCAPTCHA検証に失敗しました。もう一度お試しください。" },
+        { status: 400 },
+      );
+    }
+
+    const validatedData = await contactSchema.validate(formData, {
       abortEarly: false,
     });
 
@@ -42,20 +81,23 @@ ${validatedData.message}
 
     return NextResponse.json(
       { message: "メッセージを送信しました" },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     if (error instanceof Error && error.name === "ValidationError") {
       return NextResponse.json(
-        { message: "入力内容に誤りがあります", errors: (error as { errors?: string[] }).errors },
-        { status: 400 }
+        {
+          message: "入力内容に誤りがあります",
+          errors: (error as { errors?: string[] }).errors,
+        },
+        { status: 400 },
       );
     }
 
     console.error("Contact form error:", error);
     return NextResponse.json(
       { message: "送信に失敗しました。しばらく経ってからお試しください。" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
